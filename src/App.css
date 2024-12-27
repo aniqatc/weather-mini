@@ -1,0 +1,74 @@
+/* Animation on Initial Load */
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-up {
+  animation: slideUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+.delay-5 {
+  animation-delay: 0.5s;
+}
+
+/* Input for Search Component */
+.btn:hover {
+  background-color: #2b2b2b;
+}
+
+.form-control:focus,
+.btn:focus {
+  border: 1px solid #adb5bd;
+  --bs-focus-ring-color: rgba(0, 0, 0, 0.15) !important;
+  --bs-focus-ring-width: 0.1rem !important;
+  box-shadow: 0 0 0 var(--bs-focus-ring-width) var(--bs-focus-ring-color) !important;
+}
+
+.form-control::placeholder {
+  color: #bebfc1 !important;
+  opacity: 1;
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  opacity: 1 !important;
+  color: #000 !important;
+  transition: opacity 0.2s ease;
+}
+
+/* Grid for CurrentDetailsCard Component */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 450px) {
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

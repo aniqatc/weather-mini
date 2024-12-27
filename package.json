@@ -1,0 +1,56 @@
+{
+  "name": "weather-mini",
+  "version": "0.1.0",
+  "description": "A simple weather application showcasing real-time forecasts and climate metrics, built with React.",
+  "private": true,
+  "keywords": [
+    "react",
+    "weather",
+    "forecast",
+    "openweather",
+    "climate",
+    "weather-app",
+    "react-weather",
+    "temperature",
+    "real-time",
+    "weather-forecast"
+  ],
+  "author": {
+    "name": "Aniqa",
+    "email": "hello@aniqa.dev",
+    "url": "https://aniqa.dev"
+  },
+  "homepage": "",
+  "repository": "",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "cra-template": "1.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
