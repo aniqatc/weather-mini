@@ -1,14 +1,7 @@
 import { React } from "react";
 import Card from "./Card";
 
-function CurrentDetailsCard({
-                                               humidity,
-                                               wind,
-                                               description,
-                                               visibility,
-                                               high,
-                                               low,
-                                           }) {
+function CurrentDetailsCard({ details }) {
     return (
         <Card className="container-fluid p-0">
             <div className="details-grid">
@@ -20,7 +13,7 @@ function CurrentDetailsCard({
             >
               <i className="bi bi-moisture"></i> Humidity
             </span>
-                        <span className="fw-medium">{humidity}%</span>
+                        <span className="fw-medium">{details.main.humidity}%</span>
                     </div>
                 </div>
 
@@ -32,7 +25,7 @@ function CurrentDetailsCard({
             >
               <i className="bi bi-wind"></i> Wind
             </span>
-                        <span className="fw-medium">{wind} mph</span>
+                        <span className="fw-medium">{details.wind.speed} mph</span>
                     </div>
                 </div>
 
@@ -44,7 +37,7 @@ function CurrentDetailsCard({
             >
               <i className="bi bi-eye"></i> Visibility
             </span>
-                        <span className="fw-medium">{visibility} mi</span>
+                        <span className="fw-medium">{Math.round(details.visibility / 1609.34)} mi</span>
                     </div>
                 </div>
 
@@ -56,7 +49,7 @@ function CurrentDetailsCard({
             >
               <i className="bi bi-stars"></i> Conditions
             </span>
-                        <span className="fw-medium">{description}</span>
+                        <span className="fw-medium text-capitalize text-nowrap">{details.weather[0].description}</span>
                     </div>
                 </div>
 
@@ -68,7 +61,7 @@ function CurrentDetailsCard({
             >
               <i className="bi bi-thermometer-high"></i> High
             </span>
-                        <span className="fw-medium">{high}°F</span>
+                        <span className="fw-medium">{Math.round(details.main.temp_max)}°F</span>
                     </div>
                 </div>
 
@@ -80,7 +73,7 @@ function CurrentDetailsCard({
             >
               <i className="bi bi-thermometer-low"></i> Low
             </span>
-                        <span className="fw-medium">{low}°F</span>
+                        <span className="fw-medium">{Math.round(details.main.temp_min)}°F</span>
                     </div>
                 </div>
             </div>
