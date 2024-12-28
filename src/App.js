@@ -34,20 +34,23 @@ function App() {
     }
 
     useEffect(() => {
-        fetchByCity(city, unit).then((data) => {
-            setWeather(data);
-            setError(null);
-            setLoading(false);
-            updateSavedLocation(city);
+        setLoading(true);
+        fetchByCity(city, unit)
+            .then((data) => {
+                setWeather(data);
+                setError(null);
+                updateSavedLocation(city);
 
-            // Save 5-day forecast
-            fetchForecast(data.coord.lat, data.coord.lon, unit).then((forecastData) => {
+                return fetchForecast(data.coord.lat, data.coord.lon, unit);
+            })
+            .then((forecastData) => {
                 setForecast(forecastData);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error);
+                setLoading(false);
             });
-        }).catch(error => {
-            setError(error);
-            setLoading(false);
-        })
     }, [city, unit]);
 
     return (
