@@ -1,31 +1,30 @@
 import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_API_KEY || "b400ae3b711a616262d18b0ca2cbe78f";
+const API_KEY = process.env.REACT_APP_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5"
-const BASE_UNIT = "imperial";
 
 const weatherService = {
-    async fetchByCity(city) {
+    async fetchByCity(city, unit) {
         try {
-            const response = await axios.get(`${BASE_URL}/weather?q=${city}&appid=${API_KEY}&units=${BASE_UNIT}`);
+            const response = await axios.get(`${BASE_URL}/weather?q=${city}&appid=${API_KEY}&units=${unit}`);
             return response.data;
         } catch (error) {
             throw error;
         }
     },
 
-    async fetchByGeolocation(lat, lon) {
+    async fetchByGeolocation(lat, lon, unit) {
         try {
-            const response = await axios.get(`${BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${BASE_UNIT}`);
+            const response = await axios.get(`${BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${unit}`);
             return response.data;
         } catch (error) {
             throw error;
         }
     },
 
-    async fetchForecast(lat, lon) {
+    async fetchForecast(lat, lon, unit) {
         try {
-            const response = await axios.get(`${BASE_URL}/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=${API_KEY}&units=${BASE_UNIT}`);
+            const response = await axios.get(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${API_KEY}&units=${unit}`);
             return response.data;
         } catch (error) {
             throw error;
@@ -34,7 +33,7 @@ const weatherService = {
 
     fetchSavedLocation() {
         const location = localStorage.getItem('location');
-        return location ? location : 'New York City'; // default city
+        return location ? location : 'New York City';
     },
 
     updateSavedLocation(city) {

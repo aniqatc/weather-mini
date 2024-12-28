@@ -2,9 +2,9 @@ import React from 'react';
 
 import Card from "./Card";
 
-function LoadingCard() {
+function LoadingCard(className = "") {
     return (
-        <Card className="animate-up delay-1">
+        <Card className={className}>
             <i className="bi bi-hourglass-split"></i> Loading content...
         </Card>
     )

@@ -2,26 +2,28 @@ import { React } from "react";
 import Card from "./Card";
 
 function WeeklyForecastCard({ forecast }) {
+    if (!forecast) return null;
+
     return (
         <Card>
             <div className="d-flex justify-content-between w-100 gap-1">
-                {forecast.map((weather, index) => {
+                {forecast.list.map((day, index) => {
                     return (
                         <div
                             key={index}
                             className="d-flex flex-column align-items-center text-center gap-1"
                         >
                             <p className="text-secondary fw-medium opacity-75 mb-0">
-                                {weather.day}
+                                {new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
                             </p>
                             <span>
                 <i
-                    className={`bi ${weather.icon}`}
+                    className={`bi ${day.weather[0].icon}`}
                     style={{ fontSize: "2.5rem", opacity: "0.85" }}
                 ></i>
               </span>
                             <p className="fw-semibold mb-0 text-dark d-flex align-items-center">
-                                {weather.temp}°
+                                {Math.round(day.main.temp)}°
                                 <span
                                     className="opacity-50 d-block"
                                     style={{ fontSize: "0.9rem" }}

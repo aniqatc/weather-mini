@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 import './App.css';
 import Search from "./components/Search";
@@ -10,50 +10,57 @@ import ErrorCard from "./components/ErrorCard";
 import LoadingCard from "./components/LoadingCard";
 
 import weatherService from "./data/weatherService";
-const { fetchSavedLocation, fetchByCity } = weatherService;
+
+const { fetchSavedLocation, fetchByCity, updateSavedLocation, fetchForecast } = weatherService;
 
 function App() {
-    const [weather, setWeather] = useState(null);
+    const [city, setCity] = useState(fetchSavedLocation());
+    const [unit, setUnit] = useState('imperial');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [weather, setWeather] = useState(null);
+    const [forecast, setForecast] = useState(null);
 
     useEffect(() => {
-        const savedLocation = fetchSavedLocation();
-        fetchByCity(savedLocation).then((data) => {
+        fetchByCity(city, unit).then((data) => {
             setWeather(data);
+            setError(null);
             setLoading(false);
+            updateSavedLocation(city);
+            console.log(data);
+
+            // Save 5-day forecast
+            fetchForecast(data.coord.lat, data.coord.lon, unit).then((forecastData) => {
+                setForecast(forecastData);
+                console.log(forecastData);
+            });
         }).catch(error => {
-            setError(error.message);
+            setError(error);
             setLoading(false);
+            console.log(error);
         })
-    }, []);
+    }, [city, unit]);
 
-    if (loading) return <LoadingCard />;
-    if (error) return <ErrorCard error={error}></ErrorCard>;
-
-    if (weather) return (
+    return (
         <div className="container">
             <div className="animate-up delay-1">
-                <Search/>
+                <Search />
             </div>
+            {error && <ErrorCard className="animate-up delay-2" error={error}></ErrorCard>}
+            {loading && <LoadingCard className="animate-up delay-2" />}
+            {weather && <>
+                <div className="animate-up delay-2">
+                    <CurrentForecastCard weather={weather}/>
+                </div>
 
-            <div className="animate-up delay-2">
-                <CurrentForecastCard weather={weather}/>
-            </div>
+                <div className="animate-up delay-3">
+                    <CurrentDetailsCard details={weather}/>
+                </div>
 
-            <div className="animate-up delay-3">
-                <CurrentDetailsCard details={weather} />
-            </div>
-
-            <div className="animate-up delay-4">
-                <WeeklyForecastCard forecast={[
-                    { day: "Wed", temp: "75", icon: "bi-cloud-lightning" },
-                    { day: "Thurs", temp: "67", icon: "bi-brightness-alt-high" },
-                    { day: "Fri", temp: "78", icon: "bi-cloud-drizzle" },
-                    { day: "Sat", temp: "74", icon: "bi-lightning" },
-                    { day: "Sun", temp: "80", icon: "bi-cloud-sun" },
-                ]}/>
-            </div>
+                <div className="animate-up delay-4">
+                    <WeeklyForecastCard forecast={forecast}/>
+                </div>
+            </>}
 
             <div className="animate-up delay-5">
                 <Footer/>

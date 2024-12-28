@@ -3,7 +3,7 @@ import { React } from "react";
 function Footer() {
     return (
         <footer
-            className="d-flex justify-content-between"
+            className="d-flex justify-content-between px-2"
             style={{ fontSize: "0.9rem", opacity: 0.8 }}
         >
             <p className="text-secondary">
