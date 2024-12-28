@@ -5,6 +5,8 @@ import CurrentDetailsCard from "./components/CurrentDetailsCard";
 import WeeklyForecastCard from "./components/WeeklyForecastCard";
 import Footer from "./components/Footer";
 
+import weatherService from "./data/weatherService";
+
 const forecast = [
   { day: "Wed", temp: "75", icon: "bi-cloud-lightning" },
   { day: "Thurs", temp: "67", icon: "bi-brightness-alt-high" },
