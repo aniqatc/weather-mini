@@ -30,7 +30,9 @@ function CurrentForecastCard({ weather, unit }) {
           </span>
                 </div>
                 <div>
-                    <i className="bi bi-brightness-high" style={{ fontSize: "4.75rem" }}></i>
+                    <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                         alt={weather.weather[0].description}
+                         style={{width: "110px", opacity: "0.85", filter: "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3))"}}/>
                 </div>
             </div>
         </Card>
