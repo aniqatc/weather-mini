@@ -1,7 +1,7 @@
 import { React } from "react";
 import Card from "./Card";
 
-function WeeklyForecastCard({ forecast }) {
+function WeeklyForecastCard({ forecast, unit }) {
     if (!forecast) return null;
 
     return (
@@ -28,7 +28,7 @@ function WeeklyForecastCard({ forecast }) {
                                     className="opacity-50 d-block"
                                     style={{ fontSize: "0.9rem" }}
                                 >
-                  F
+                  {unit === 'imperial' ? "F" : "C"}
                 </span>
                             </p>
                         </div>

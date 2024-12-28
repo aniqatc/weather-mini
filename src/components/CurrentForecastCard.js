@@ -1,7 +1,7 @@
 import { React } from "react";
 import Card from "./Card";
 
-function CurrentForecastCard({ weather }) {
+function CurrentForecastCard({ weather, unit }) {
     return (
         <Card>
             <div className="d-flex align-items-center justify-content-between w-100 gap-1">
@@ -19,7 +19,7 @@ function CurrentForecastCard({ weather }) {
                     <h1 className="fw-bold mb-0" style={{ fontSize: "3.5rem" }}>
                         {Math.round(weather.main.temp)}
                         <span className="fs-3 fw-light align-text-top d-inline-block mt-1">
-              °F
+              {" "}°{unit === 'imperial' ? "F" : "C"}
             </span>
                     </h1>
                     <span

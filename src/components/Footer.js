@@ -1,6 +1,12 @@
-import { React } from "react";
+import React from "react";
 
-function Footer() {
+function Footer({ onUnitChange }) {
+
+    function handleUnitChange(event) {
+        event.preventDefault();
+        onUnitChange();
+    }
+
     return (
         <footer
             className="d-flex justify-content-between px-2"
@@ -23,8 +29,9 @@ function Footer() {
                     href="/"
                     className="text-decoration-none text-secondary fw-medium footer-link"
                     style={{ color: "inherit" }}
+                    onClick={handleUnitChange}
                 >
-                    Change Unit <i className="bi bi-thermometer-half text-dark"></i>
+                    Change Units <i className="bi bi-thermometer-half text-dark"></i>
                 </a>
             </p>
         </footer>

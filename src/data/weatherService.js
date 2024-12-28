@@ -36,9 +36,20 @@ const weatherService = {
         return location ? location : 'New York City';
     },
 
+    fetchSavedUnit() {
+        const unit = localStorage.getItem('unit');
+        return unit ? unit : 'imperial';
+    },
+
     updateSavedLocation(city) {
         if (city) {
             localStorage.setItem('location', city);
+        }
+    },
+
+    updateSavedUnit(unit) {
+        if (unit) {
+            localStorage.setItem('unit', unit);
         }
     }
 }

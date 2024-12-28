@@ -1,7 +1,7 @@
 import { React } from "react";
 import Card from "./Card";
 
-function CurrentDetailsCard({ details }) {
+function CurrentDetailsCard({ details, unit }) {
     return (
         <Card className="container-fluid p-0">
             <div className="details-grid">
@@ -25,7 +25,7 @@ function CurrentDetailsCard({ details }) {
             >
               <i className="bi bi-wind"></i> Wind
             </span>
-                        <span className="fw-medium">{details.wind.speed} mph</span>
+                        <span className="fw-medium">{details.wind.speed} {unit === 'imperial' ? "mph" : "m/s"}</span>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@ function CurrentDetailsCard({ details }) {
             >
               <i className="bi bi-thermometer-high"></i> High
             </span>
-                        <span className="fw-medium">{Math.round(details.main.temp_max)}°F</span>
+                        <span className="fw-medium">{Math.round(details.main.temp_max)}°{unit === 'imperial' ? "F" : "C"}</span>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ function CurrentDetailsCard({ details }) {
             >
               <i className="bi bi-thermometer-low"></i> Low
             </span>
-                        <span className="fw-medium">{Math.round(details.main.temp_min)}°F</span>
+                        <span className="fw-medium">{Math.round(details.main.temp_min)}°{unit === 'imperial' ? "F" : "C"}</span>
                     </div>
                 </div>
             </div>
