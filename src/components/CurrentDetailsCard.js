@@ -10,9 +10,9 @@ function CurrentDetailsCard({
                                                low,
                                            }) {
     return (
-        <Card className="container-fluid p-0 bg-white">
+        <Card className="container-fluid p-0">
             <div className="details-grid">
-                <div className="text-sm-start text-center">
+                <div className="text-start custom-text-center">
                     <div className="d-flex flex-column">
             <span
                 className="text-secondary fw-medium"
@@ -36,7 +36,7 @@ function CurrentDetailsCard({
                     </div>
                 </div>
 
-                <div className="text-sm-end text-center">
+                <div className="text-end custom-text-center">
                     <div className="d-flex flex-column">
             <span
                 className="text-secondary fw-medium"
@@ -48,7 +48,7 @@ function CurrentDetailsCard({
                     </div>
                 </div>
 
-                <div className="text-sm-start text-center">
+                <div className="text-start custom-text-center">
                     <div className="d-flex flex-column">
             <span
                 className="text-secondary fw-medium"
@@ -72,7 +72,7 @@ function CurrentDetailsCard({
                     </div>
                 </div>
 
-                <div className="text-sm-end text-center">
+                <div className="text-end custom-text-center">
                     <div className="d-flex flex-column">
             <span
                 className="text-secondary fw-medium"

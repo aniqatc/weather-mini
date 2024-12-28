@@ -3,7 +3,7 @@ import Card from "./Card";
 
 function CurrentForecastCard({ date, temperature, city, icon }) {
     return (
-        <Card className="bg-light-subtle">
+        <Card>
             <div className="d-flex align-items-center justify-content-between w-100 gap-1">
                 <div className="d-flex flex-column justify-content-center">
                     <div className="fw-medium" style={{ fontSize: "0.8rem" }}>

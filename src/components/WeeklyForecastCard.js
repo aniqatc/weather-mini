@@ -3,7 +3,7 @@ import Card from "./Card";
 
 function WeeklyForecastCard({ forecast }) {
     return (
-        <Card className="bg-white">
+        <Card>
             <div className="d-flex justify-content-between w-100 gap-1">
                 {forecast.map((weather, index) => {
                     return (

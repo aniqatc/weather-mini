@@ -67,8 +67,12 @@
   gap: 1.5rem;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 430px) {
   .details-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .custom-text-center {
+    text-align: center !important;
   }
 }
