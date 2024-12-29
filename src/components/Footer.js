@@ -15,7 +15,7 @@ function Footer({ onUnitChange }) {
             <p className="text-secondary">
                 <i className="bi bi-person-check-fill text-dark"></i> Coded by{" "}
                 <a
-                    href="https://aniqa.dev"
+                    href="https://github.com/aniqatc"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-decoration-none text-light-emphasis fw-medium footer-link"
