@@ -29,10 +29,15 @@ function CurrentForecastCard({ weather, unit }) {
             <i className="bi bi-geo-fill"></i> {`${weather.name}, ${weather.sys.country}`}
           </span>
                 </div>
-                <div>
+                <div style={{
+                    width: "100px",
+                    height: "100px",
+                    overflow: "hidden"
+                }}>
                     <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                          alt={weather.weather[0].description}
-                         style={{width: "110px", opacity: "0.85", filter: "drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3))"}}/>
+                         style={{objectFit: "cover", transform: "scale(1.3)", opacity: "0.85", filter: "grayscale(100%) drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4))"}}/>
+                    {/*<i className={`bi ${iconConvert(weather.weather[0].icon)}`} aria-label={weather.weather[0].description} style={{ fontSize: "4.75rem" }}></i>*/}
                 </div>
             </div>
         </Card>
