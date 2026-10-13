@@ -17,7 +17,7 @@ A small React weather app with current conditions and a 5-day forecast for any c
 
 ## Features
 
-- Search by city name, or use your current location
+- Search by city name, or use your current location (looked up by coordinates, so towns that share a name load correctly)
 - Current temperature, conditions, high and low, humidity, wind and visibility, with the date and time
 - A 5-day forecast with one reading per day
 - Switch between °F and °C from the footer
@@ -31,7 +31,7 @@ A small React weather app with current conditions and a 5-day forecast for any c
 
 ## Accessibility
 
-- The search field and location button have screen reader labels
+- The search field, search button and location button have screen reader labels
 - Weather icons use the condition as alt text
 
 ## Project structure
@@ -76,7 +76,7 @@ npm start
 ### October 2026
 
 - Fixed the forecast row, which showed five 3-hour readings labeled by weekday instead of five days
-- Visibility now shows km in metric
+- Visibility now shows km in metric, current location searches by coordinates, and the search button has a screen reader label
 
 ### December 2024
 
