@@ -24,7 +24,7 @@ const weatherService = {
 
     async fetchForecast(lat, lon, unit) {
         try {
-            const response = await axios.get(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${API_KEY}&units=${unit}`);
+            const response = await axios.get(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&cnt=40&appid=${API_KEY}&units=${unit}`);
             return response.data;
         } catch (error) {
             throw error;
