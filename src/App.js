@@ -9,10 +9,11 @@ import Footer from "./components/Footer";
 import ErrorCard from "./components/ErrorCard";
 import LoadingCard from "./components/LoadingCard";
 import weatherService from "./data/weatherService";
-const { fetchSavedLocation, fetchSavedUnit, fetchByCity, updateSavedLocation, updateSavedUnit, fetchForecast } = weatherService;
+const { fetchSavedLocation, fetchSavedUnit, fetchByCity, fetchByGeolocation, updateSavedLocation, updateSavedUnit, fetchForecast } = weatherService;
 
 function App() {
-    const [city, setCity] = useState(fetchSavedLocation());
+    // A location is either { city } from the search box or { lat, lon } from "use my location".
+    const [location, setLocation] = useState(fetchSavedLocation());
     const [unit, setUnit] = useState(fetchSavedUnit());
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -20,7 +21,13 @@ function App() {
     const [forecast, setForecast] = useState(null);
 
     function handleSearch(searchedCity) {
-        setCity(searchedCity);
+        setLocation({ city: searchedCity });
+    }
+
+    // Search by coordinates rather than the place's name, so a town that shares
+    // its name with a bigger city still loads the right weather.
+    function handleLocate(lat, lon) {
+        setLocation({ lat, lon });
     }
 
     function handleUnit() {
@@ -35,11 +42,15 @@ function App() {
 
     useEffect(() => {
         setLoading(true);
-        fetchByCity(city, unit)
+        const request = location.city
+            ? fetchByCity(location.city, unit)
+            : fetchByGeolocation(location.lat, location.lon, unit);
+
+        request
             .then((data) => {
                 setWeather(data);
                 setError(null);
-                updateSavedLocation(city);
+                updateSavedLocation(location);
 
                 return fetchForecast(data.coord.lat, data.coord.lon, unit);
             })
@@ -51,12 +62,12 @@ function App() {
                 setError(error);
                 setLoading(false);
             });
-    }, [city, unit]);
+    }, [location, unit]);
 
     return (
         <div className="container">
             <div className="animate-up delay-1">
-                <Search onSearch={handleSearch} unit={unit}/>
+                <Search onSearch={handleSearch} onLocate={handleLocate} />
             </div>
 
             {loading && <LoadingCard className="animate-up delay-2" />}

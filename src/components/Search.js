@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import weatherService from "../data/weatherService";
 
-const { fetchByGeolocation } = weatherService;
-
-function Search({ onSearch, unit }) {
+function Search({ onSearch, onLocate }) {
     const [city, setCity] = useState("");
 
     function handleSearch(event) {
@@ -17,7 +14,7 @@ function Search({ onSearch, unit }) {
     function handleGeolocation() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(({ coords }) => {
-                fetchByGeolocation(coords.latitude, coords.longitude, unit).then(data => onSearch(data.name));
+                onLocate(coords.latitude, coords.longitude);
             });
         }
     }
@@ -46,6 +43,7 @@ function Search({ onSearch, unit }) {
             <button
                 className="btn btn-outline-secondary border border-light-subtle rounded-end-4"
                 type="submit"
+                aria-label="Search"
             >
                 <i className="bi bi-search"></i>
             </button>
