@@ -1,5 +1,6 @@
 import { React } from "react";
 import Card from "./Card";
+import dailyForecast from "../data/dailyForecast";
 
 function WeeklyForecastCard({ forecast, unit }) {
     if (!forecast) return null;
@@ -7,14 +8,14 @@ function WeeklyForecastCard({ forecast, unit }) {
     return (
         <Card>
             <div className="d-flex justify-content-between w-100 gap-1">
-                {forecast.list.map((day, index) => {
+                {dailyForecast(forecast).map((day, index) => {
                     return (
                         <div
                             key={index}
                             className="d-flex flex-column align-items-center text-center gap-1"
                         >
                             <p className="text-secondary fw-medium opacity-75 mb-0">
-                                {new Date(day.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
+                                {day.weekday}
                             </p>
                             <span>
                                 <img src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}

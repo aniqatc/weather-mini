@@ -24,16 +24,27 @@ const weatherService = {
 
     async fetchForecast(lat, lon, unit) {
         try {
-            const response = await axios.get(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&cnt=5&appid=${API_KEY}&units=${unit}`);
+            const response = await axios.get(`${BASE_URL}/forecast?lat=${lat}&lon=${lon}&cnt=40&appid=${API_KEY}&units=${unit}`);
             return response.data;
         } catch (error) {
             throw error;
         }
     },
 
+    // Saved as JSON ({ city } or { lat, lon }). Older versions saved a plain
+    // city name, which still loads.
     fetchSavedLocation() {
-        const location = localStorage.getItem('location');
-        return location ? location : 'New York City';
+        const saved = localStorage.getItem('location');
+        if (!saved) return { city: 'New York City' };
+        try {
+            const location = JSON.parse(saved);
+            if (location && (location.city || (location.lat != null && location.lon != null))) {
+                return location;
+            }
+        } catch (error) {
+            // not JSON: a city name saved by an older version
+        }
+        return { city: saved };
     },
 
     fetchSavedUnit() {
@@ -41,9 +52,9 @@ const weatherService = {
         return unit ? unit : 'imperial';
     },
 
-    updateSavedLocation(city) {
-        if (city) {
-            localStorage.setItem('location', city);
+    updateSavedLocation(location) {
+        if (location) {
+            localStorage.setItem('location', JSON.stringify(location));
         }
     },
 

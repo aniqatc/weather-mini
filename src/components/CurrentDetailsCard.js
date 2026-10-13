@@ -37,7 +37,7 @@ function CurrentDetailsCard({ details, unit }) {
             >
               <i className="bi bi-eye"></i> Visibility
             </span>
-                        <span className="fw-medium">{Math.round(details.visibility / 1609.34)} mi</span>
+                        <span className="fw-medium">{unit === 'imperial' ? `${Math.round(details.visibility / 1609.34)} mi` : `${Math.round(details.visibility / 1000)} km`}</span>
                     </div>
                 </div>
 
